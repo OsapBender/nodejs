@@ -1,21 +1,23 @@
-// Require packages and set the port
 const express = require('express');
-const routes = require('./routes/routes');
-const bodyParser = require('body-parser');
-const port = 3000;
+const socketIO = require('socket.io');
+const path = require('path');
+const http = require('http');
+
+const publicPath = path.join(__dirname, './public');
+const port = process.env.PORT || 3000;
+
 const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 
-// Use Node.js body parsing middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true,
-}));
+app.use(express.static(publicPath));
 
-routes(app);
-
-// Start the server
-const server = app.listen(port, (error) => {
-    if (error) return console.log(`Error: ${error}`);
-
-    console.log(`Server listening on port ${server.address().port}`);
+io.on('connection', socket => {
+    socket.on('createMessage', data => {
+        socket.emit('newMessage', {
+            text: data.value
+        })
+    });
 });
+
+server.listen(port, () => console.log('Сервер запущен на порте ' + port));
