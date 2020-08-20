@@ -1,15 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import cn from '../../utils/cn';
-
-@cn('page-main')
 export default class PageMain extends React.Component {
-    render(cn) {
+    render() {
         return (
-            <div className={ cn() }>
-                <h1 className={ cn('header') }>
-                    best stub ever
-                </h1>
+            <div>
+                <h1>best stub ever</h1>
             </div>
         );
     }
