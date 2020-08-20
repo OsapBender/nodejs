@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-<h1>Chat</h1>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="socket.io/socket.io.js"></script>
-</body>
+  <body>
+    <form action="chat.html" method="get" class="auth">
+      <div class="card">
+        <div class="card-content">
+          <h4 class="card-title">
+            Классный чат
+          </h4>
+          <div class="input-field">
+            <input
+              type="text"
+              id="name"
+              class="validate"
+              name="name"
+              required
+            />
+            <label for="name">Имя:</label>
+          </div>
+          <div class="input-field">
+            <input
+              type="text"
+              id="room"
+              class="validate"
+              name="room"
+              required
+            />
+            <label for="room">Комната</label>
+          </div>
+        </div>
+        <div class="card-action">
+          <button type="submit" class="waves-effect waves-light btn">
+            Enter chat
+          </button>
+        </div>
+      </div>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+  </body>
 </html>
