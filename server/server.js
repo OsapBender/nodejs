@@ -14,18 +14,8 @@ const users = [{username: 'admin', password: '123'}];
 const corsOptions = {
     origin: 'http://localhost:8080'
 };
-/*
-// allow cross origin requests for api
-app.post('/*', function (req, res, next) {
-    res.set({
-        'Access-Control-Allow-Origin': 'http://localhost:8080',
-        'Access-Control-Allow-Methods': 'POST',
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-    });
-    next();
-}); */
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static(publicPath));
 app.use('/auth', express.static(publicPath));
