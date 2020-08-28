@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import { useDispatch } from 'react-redux'
 import styled from "styled-components";
 import {TextField, Button} from "@material-ui/core";
 import axios from "axios";
+import {dispatchAuth} from "../../constants/actions";
 
 const Container = styled.div`
   display: flex;
@@ -38,17 +40,19 @@ const WrapperButton = styled.div`
 `;
 
 // eslint-disable-next-line consistent-return
-const submitForm = async (username, password, setError, props) => {
+const submitForm = async (username, password, setError, props, dispatch) => {
     let resp = await axios.post('http://localhost:3000/signin', {username, password});
     if (!resp.data) return setError(true);
     setError(false);
-    props.history.push('/chat');
+    dispatch(dispatchAuth());
+    props.history.push(resp.data);
 };
 
 export default (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, serError] = useState(false);
+    const dispatch = useDispatch();
     return (
         <Container>
             <Form>
@@ -75,7 +79,7 @@ export default (props) => {
                         variant='contained'
                         size='large'
                         color='primary'
-                        onClick={ () => submitForm(username, password, serError, props) }
+                        onClick={ () => submitForm(username, password, serError, props, dispatch) }
                     >
                         Войти
                     </Button>
